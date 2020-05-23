@@ -1,41 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta content="width=device-width, initial-scale=1.0" name="viewport">
-        <title>Document</title>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-        <link href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-        <link href="style.css" rel="stylesheet" type="text/css">
-    </head>
-    <body>
-        <div class="converter-wrapper">
-            <form autocomplete="off" class="converter-form" onkeydown="return event.key != 'Enter';">
-                <div class="currency-amount form-item">
-                    <input id="amount" placeholder=" " required type="number">
-                    <label for="amount">Amount of money</label>
-                </div>
-                <div class="currency-dropdown form-item" data-key="from">
-                    <input class="currency-type selected" id="from" maxlength="3" name="from" placeholder=" " required>
-                    <label for="from">From</label>
-                    <ul class="currency-list" data-key="from"></ul>
-                    <i class="icon-chevron-down"></i>
-                </div>
-                <button class="switch" id="switch-button">
-                    <i class="icon-exchange"></i>
-                </button>
-                <div class="currency-dropdown form-item" data-key="to">
-                    <input class="currency-type selected" id="to" maxlength="3" name="to" placeholder=" " required>
-                    <label for="to">To</label>
-                    <ul class="currency-list" data-key="to"></ul>
-                    <i class="icon-chevron-down"></i>
-                </div>
-                <button class="submit-btn " type="submit">
-                    <i class="icon-arrow-right"></i>
-                </button>
-            </form>
-            <div class="converter-form-results"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Currency Converter</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css"
+      rel="stylesheet"
+    />
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="converter-wrapper">
+      <form autocomplete="off" class="converter-form" onkeydown="return event.key != 'Enter';">
+        <div class="currency-amount form-item">
+          <input id="amount" placeholder=" " required type="number" />
+          <label for="amount">Amount of money</label>
         </div>
-        <script src="./main.js"></script>
-    </body>
+        <div class="currency-dropdown form-item" data-key="from">
+          <input
+            class="currency-type selected"
+            id="from"
+            maxlength="3"
+            name="from"
+            placeholder=" "
+            required
+          />
+          <label for="from">From</label>
+          <ul class="currency-list" data-key="from"></ul>
+          <i class="icon-chevron-down"></i>
+        </div>
+        <button class="switch" id="switch-button">
+          <i class="icon-exchange"></i>
+        </button>
+        <div class="currency-dropdown form-item" data-key="to">
+          <input
+            class="currency-type selected"
+            id="to"
+            maxlength="3"
+            name="to"
+            placeholder=" "
+            required
+          />
+          <label for="to">To</label>
+          <ul class="currency-list" data-key="to"></ul>
+          <i class="icon-chevron-down"></i>
+        </div>
+        <button class="submit-btn" type="submit">
+          <i class="icon-arrow-right"></i>
+        </button>
+      </form>
+      <div class="converter-form-results"></div>
+    </div>
+    <script src="./main.js"></script>
+  </body>
 </html>
