@@ -119,7 +119,7 @@ li {
 }
 
 .form-item input:focus + label,
-.form-item input:not(:placeholder-shown) ~ label {
+.form-item input:not(:invalid) ~ label {
   top: -22px;
   font-size: 1.3rem;
   color: #ffffff;
