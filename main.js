@@ -144,6 +144,8 @@ function switchCurrency(e) {
 function filterList() {
   const itemsList = document.querySelectorAll(".currency-list.active > .currency-list-item");
   const activeInput = document.querySelector(".selected.active");
+
+  if (!activeInput) return;
   const wordToMatch = activeInput.value.toUpperCase();
 
   itemsList.forEach((item) => {
