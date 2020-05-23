@@ -118,11 +118,57 @@ li {
   border: 2px solid #1e58ff;
 }
 
-.form-item input:focus + label,
-.form-item input:not(:placeholder-shown) + label,
-.form-item input:invalid:not(:focus)::-ms-input-placeholder + label,
+/* .form-item input:invalid:not(:focus)::-ms-input-placeholder + label,
 .form-item input:invalid:not(:focus)::-webkit-input-placeholder + label,
-.form-item input:invalid:not(:focus)::-webkit-input-placeholder + label {
+.form-item input:invalid:not(:focus)::-ms-input-placeholder + label */
+
+.form-item input:focus + label,
+.form-item input:not(:placeholder-shown) + label {
+  top: -22px;
+  font-size: 1.3rem;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.form-item textarea:invalid:not(:focus):-ms-input-placeholder,
+.form-item textarea:invalid:not(:focus):-webkit-input-placeholder,
+.form-item textarea:invalid:not(:focus):-moz-input-placeholder {
+  top: -22px;
+  font-size: 1.3rem;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.form-item input:invalid:not(:focus)::-webkit-input-placeholder,
+.form-item select:invalid:not(:focus)::-webkit-input-placeholder,
+.form-item textarea:invalid:not(:focus)::-webkit-input-placeholder {
+  top: -22px;
+  font-size: 1.3rem;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.form-item input:invalid:not(:focus)::-moz-placeholder,
+.form-item select:invalid:not(:focus)::-moz-placeholder,
+.form-item textarea:invalid:not(:focus)::-moz-placeholder {
+  top: -22px;
+  font-size: 1.3rem;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.form-item input:invalid:not(:focus):-ms-input-placeholder,
+.form-item select:invalid:not(:focus):-ms-input-placeholder,
+.form-item textarea:invalid:not(:focus):-ms-input-placeholder {
+  top: -22px;
+  font-size: 1.3rem;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.form-item input:invalid:not(:focus)::placeholder,
+.form-item select:invalid:not(:focus)::placeholder,
+.form-item textarea:invalid:not(:focus)::placeholder {
   top: -22px;
   font-size: 1.3rem;
   color: #ffffff;
