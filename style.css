@@ -25,9 +25,14 @@ select {
   -ms-appearance: none;
 }
 
+a {
+  text-decoration: none;
+}
+
 input {
   border: none;
   color: #080808;
+  cursor: pointer;
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
