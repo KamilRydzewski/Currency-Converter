@@ -5,6 +5,7 @@ const form = document.querySelector("form");
 const inputDropdowns = document.querySelectorAll(".selected");
 const currencyListItems = document.querySelectorAll(".currency-type");
 const switchButton = document.getElementById("switch-button");
+const inputAmount = document.getElementById("amount");
 
 fetch(endpoint)
   .then((response) => response.json())
@@ -160,17 +161,24 @@ function clearInput(e) {
   e.target.value = "";
 }
 
-function checkInput(e) {}
-
 inputDropdowns.forEach((input) =>
   input.addEventListener("click", (e) => {
     toggleDropdown(e);
     filterList();
   })
 );
+
+function checkValue(e) {
+  console.log(typeof e.target.value);
+  const valueToMatch = new RegExp("^[0-9]+$");
+  if (!e.target.value.match(valueToMatch)) {
+    e.target.value = 1;
+  }
+}
+
 inputDropdowns.forEach((input) => input.addEventListener("keyup", () => filterList()));
 inputDropdowns.forEach((input) => input.addEventListener("focus", (e) => clearInput(e)));
-inputDropdowns.forEach((input) => input.addEventListener("focusout", (e) => checkInput(e)));
 switchButton.addEventListener("click", (e) => switchCurrency(e));
 window.addEventListener("click", (e) => closeAnyOpenDropdowns(e));
 form.addEventListener("submit", (e) => getResults(e));
+inputAmount.addEventListener("focusout", (e) => checkValue(e));
