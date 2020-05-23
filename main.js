@@ -1,4 +1,4 @@
-const endpoint = "http://data.fixer.io/api/latest?access_key=63bf9685968808c6ecdc616d73c6e2f6";
+const endpoint = "https://data.fixer.io/api/latest?access_key=63bf9685968808c6ecdc616d73c6e2f6";
 
 const form = document.querySelector("form");
 const inputDropdowns = document.querySelectorAll(".selected");
