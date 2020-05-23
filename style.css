@@ -265,12 +265,36 @@ button > i {
   text-align: center;
   padding: 30px;
 }
+
+.results-container p {
+  border-left: 2px solid #febc35;
+  border-bottom: 2px solid #febc35;
+  margin: 0;
+  padding: 10px;
+  position: relative;
+}
 .results-container p + p {
-  margin: 5px 0 5px;
+  width: 250px;
+}
+
+.results-container p::before {
+  content: "";
+  background-color: #febc35;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 
 .results-container span.big {
   font-size: 3.5rem;
+}
+
+@media all and (max-width: 775px) {
+  .results-container span.big {
+    font-size: 2.5rem;
+  }
 }
 
 .results-container span.big:nth-child(2) {

@@ -107,8 +107,8 @@ function getResults(e) {
 
 function displayResults(amount, haveCurrency, wantedCurrency, results) {
   const container = document.querySelector(".converter-form-results");
-  const singleFromValue = (amount / results).toFixed(6);
-  const singleToValue = (results / amount).toFixed(6);
+  const singleFromValue = (amount / results).toFixed(3);
+  const singleToValue = (results / amount).toFixed(3);
 
   container.innerHTML = `
     <div class="results-container">
