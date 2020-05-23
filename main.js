@@ -161,6 +161,27 @@ function clearInput(e) {
   e.target.value = "";
 }
 
+function checkDropdownInput(e) {
+  const itemsList = document.querySelectorAll(".currency-list.active > .currency-list-item");
+  const wordToMatch = e.target.value.toUpperCase();
+
+  itemsList.forEach((item) => {
+    const itemKey = item.dataset.key.toUpperCase();
+
+    if (!itemKey.match(wordToMatch)) {
+      item.style.display = "none";
+      e.target.value = "";
+    }
+  });
+}
+
+function checkAmountValue(e) {
+  const valueToMatch = new RegExp("^[0-9]+$");
+  if (!e.target.value.match(valueToMatch)) {
+    e.target.value = 1;
+  }
+}
+
 inputDropdowns.forEach((input) =>
   input.addEventListener("click", (e) => {
     toggleDropdown(e);
@@ -168,17 +189,10 @@ inputDropdowns.forEach((input) =>
   })
 );
 
-function checkValue(e) {
-  console.log(typeof e.target.value);
-  const valueToMatch = new RegExp("^[0-9]+$");
-  if (!e.target.value.match(valueToMatch)) {
-    e.target.value = 1;
-  }
-}
-
 inputDropdowns.forEach((input) => input.addEventListener("keyup", () => filterList()));
 inputDropdowns.forEach((input) => input.addEventListener("focus", (e) => clearInput(e)));
+inputDropdowns.forEach((input) => input.addEventListener("focusout", (e) => checkDropdownInput(e)));
 switchButton.addEventListener("click", (e) => switchCurrency(e));
 window.addEventListener("click", (e) => closeAnyOpenDropdowns(e));
 form.addEventListener("submit", (e) => getResults(e));
-inputAmount.addEventListener("focusout", (e) => checkValue(e));
+inputAmount.addEventListener("focusout", (e) => checkAmountValue(e));
