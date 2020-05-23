@@ -1,4 +1,8 @@
 // const endpoint = "http://data.fixer.io/api/latest?access_key=63bf9685968808c6ecdc616d73c6e2f6";
+// You can use this API just on http because https is not supported for free subscription plan.
+//  "All paid subscription plans available on Fixer.io come with 256-bit SSL encryption.
+//  To connect to the API via SSL, simply use the https protocol instead of standard http.""
+
 const endpoint = "https://api.exchangeratesapi.io/latest";
 
 const form = document.querySelector("form");
