@@ -13,9 +13,7 @@ html {
 body {
   font-size: 1.6rem;
   font-family: "Roboto", sans-serif;
-  background: url("https://picsum.photos/4096/2304") no-repeat;
-  background-size: cover;
-  min-height: 1200px;
+  background: #0982ff;
 }
 
 select {
@@ -121,7 +119,10 @@ li {
 }
 
 .form-item input:focus + label,
-.form-item input:not(:placeholder-shown) + label {
+.form-item input:not(:placeholder-shown) + label,
+.form-item input:invalid:not(:focus)::-ms-input-placeholder + label,
+.form-item input:invalid:not(:focus)::-webkit-input-placeholder + label,
+.form-item input:invalid:not(:focus)::-webkit-input-placeholder + label {
   top: -22px;
   font-size: 1.3rem;
   color: #ffffff;
