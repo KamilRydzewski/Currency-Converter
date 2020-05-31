@@ -137,12 +137,10 @@ function displayResults(amount, haveCurrency, wantedCurrency, results) {
 
 function switchCurrency(e) {
   e.preventDefault();
-  const inputFrom = document.getElementById("from");
-  const inputTo = document.getElementById("to");
-  const inputFromValue = inputFrom.value;
+  let inputFrom = document.getElementById("from");
+  let inputTo = document.getElementById("to");
 
-  inputFrom.value = inputTo.value;
-  inputTo.value = inputFromValue;
+  [inputFrom.value, inputTo.value] = [inputTo.value, inputFrom.value];
 }
 
 function filterList() {
@@ -195,7 +193,7 @@ inputDropdowns.forEach((input) =>
   })
 );
 
-inputDropdowns.forEach((input) => input.addEventListener("keyup", () => filterList()));
+inputDropdowns.forEach((input) => input.addEventListener("keyup", filterList()));
 inputDropdowns.forEach((input) => input.addEventListener("focus", (e) => clearInput(e)));
 inputDropdowns.forEach((input) => input.addEventListener("focusout", (e) => checkDropdownInput(e)));
 switchButton.addEventListener("click", (e) => switchCurrency(e));
