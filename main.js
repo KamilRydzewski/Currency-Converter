@@ -6,20 +6,31 @@
 const endpoint = "https://api.exchangeratesapi.io/latest";
 
 const form = document.querySelector("form");
-const inputDropdowns = document.querySelectorAll(".selected");
-const currencyListItems = document.querySelectorAll(".currency-type");
-const switchButton = document.getElementById("switch-button");
 const inputAmount = document.getElementById("amount");
+const inputDropdowns = document.querySelectorAll(".selected");
+const switchButton = document.getElementById("switch-button");
+const dropdownLists = document.querySelectorAll(".currency-list");
+const currencyListItems = document.querySelectorAll(".currency-type");
 
-fetch(endpoint)
-  .then((response) => response.json())
-  .then((currency) => createDropdownList(Object.keys(currency.rates)));
+async function fetchCurrencyRates() {
+  try {
+    const response = await fetch(endpoint);
+    const data = response.json();
+    const currency = await data;
 
-function createDropdownList(itemsList) {
-  const dropdownList = document.querySelectorAll(".currency-list");
+    return currency.rates;
+  } catch (err) {
+    console.error("Problem with fetching currency...");
+    console.error(err);
+  }
+}
 
-  dropdownList.forEach(
-    (list) => (list.innerHTML = itemsList.map((currency) => createDropdownItem(currency)).join(""))
+async function createDropdownList() {
+  const currencyNamesList = Object.keys(await fetchCurrencyRates());
+
+  dropdownLists.forEach(
+    (list) =>
+      (list.innerHTML = currencyNamesList.map((currency) => createDropdownItem(currency)).join(""))
   );
 }
 
@@ -48,9 +59,7 @@ function toggleDropdown(e) {
 }
 
 function showDropdownList() {
-  const dropdownContainer = document.querySelectorAll(".currency-list");
-
-  dropdownContainer.forEach((list) => {
+  dropdownLists.forEach((list) => {
     const activeInput = document.querySelector(".selected.active");
 
     if (activeInput.id === list.dataset.key) {
@@ -86,30 +95,26 @@ function setCurrency(e) {
   selectedInput.value = newValue;
 }
 
-function getResults(e) {
+async function getResults(e) {
   e.preventDefault();
   const amount = document.getElementById("amount").value;
   const fromCurrency = document.getElementById("from").value;
   const toCurrency = document.getElementById("to").value;
   const currencyArray = [fromCurrency, toCurrency];
+  const currencyList = await fetchCurrencyRates();
 
-  fetch(endpoint)
-    .then((response) => response.json())
-    .then((currency) => {
-      const currentRates = Object.keys(currency.rates)
-        .filter((key) => currencyArray.includes(key))
-        .reduce((obj, key) => {
-          obj[key] = currency.rates[key];
-          return obj;
-        }, {});
+  const currentRates = Object.keys(currencyList)
+    .filter((key) => currencyArray.includes(key))
+    .reduce((obj, key) => {
+      obj[key] = currencyList[key];
+      return obj;
+    }, {});
+  const results = ((currentRates[toCurrency] / currentRates[fromCurrency]) * amount).toFixed(6);
 
-      const results = ((currentRates[toCurrency] / currentRates[fromCurrency]) * amount).toFixed(6);
-
-      displayResults(amount, fromCurrency, toCurrency, results);
-    });
+  displayResults(amount, fromCurrency, toCurrency, results);
 }
 
-function displayResults(amount, haveCurrency, wantedCurrency, results) {
+function displayResults(amount = 1, haveCurrency, wantedCurrency, results) {
   const container = document.querySelector(".converter-form-results");
   const singleFromValue = (amount / results).toFixed(3);
   const singleToValue = (results / amount).toFixed(3);
@@ -192,6 +197,8 @@ inputDropdowns.forEach((input) =>
     filterList();
   })
 );
+
+createDropdownList();
 
 inputDropdowns.forEach((input) => input.addEventListener("keyup", filterList()));
 inputDropdowns.forEach((input) => input.addEventListener("focus", (e) => clearInput(e)));
